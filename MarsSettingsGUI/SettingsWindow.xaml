@@ -1,0 +1,58 @@
+﻿<Controls:MetroWindow x:Class="MarsSettingsGUI.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:MarsSettingsGUI"
+        mc:Ignorable="d"
+        BorderThickness="0" 
+        GlowBrush="Black"
+                      TitleCaps="False"
+                      
+                      FontFamily="./Fonts/#Titillium Web SemiBold"
+        Title="MainWindowa" Height="350" Width="300" ResizeMode="NoResize" SizeToContent="WidthAndHeight" MaxWidth="500" MaxHeight="550" >
+    <Controls:MetroWindow.Resources>
+
+        <ResourceDictionary >
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedSingleRowTabControl.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <!-- this window should be blue -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <!-- and should use the light theme -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseDark.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </Controls:MetroWindow.Resources>
+    <Controls:MetroWindow.TitleTemplate>
+        <DataTemplate>
+            <TextBlock Text="{TemplateBinding Content}"
+                   TextTrimming="CharacterEllipsis"
+                   VerticalAlignment="Center"
+                   Margin="8 0 8 0"
+                       FontSize="16"
+                       FontWeight="Bold"
+                   FontFamily="./Fonts/#Titillium Web SemiBold" />
+        </DataTemplate>
+    </Controls:MetroWindow.TitleTemplate>
+    <Grid Name="mGrid">
+        <TabControl Name="mainTabControl">
+            <TabControl.Resources>
+                <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
+                    <Setter Property="Controls:ControlsHelper.HeaderFontSize" Value="20" />
+                    
+                    <!--<Setter Property="Controls:ControlsHelper.HeaderFontWeight" Value="Medium" />-->
+                </Style>
+                <Style TargetType="{x:Type TabControl}" BasedOn="{StaticResource {x:Type TabControl}}">
+                    <Setter Property="Controls:TabControlHelper.Underlined" Value="SelectedTabItem"/>
+                </Style>
+            </TabControl.Resources>
+        </TabControl>
+        
+    </Grid>
+</Controls:MetroWindow>
+    
