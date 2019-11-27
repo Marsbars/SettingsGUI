@@ -24,7 +24,7 @@ namespace MarsSettingsGUITestApp
         private static void ThreadStartingPoint()
         {
             TestSetting.Load();
-            var settingWindow = new MarsSettingsGUI.SettingsWindow(TestSetting.CurrentSetting, "Green");
+            var settingWindow = new MarsSettingsGUI.SettingsWindow(TestSetting.CurrentSetting, "Shaman");
             settingWindow.ShowDialog();
             TestSetting.CurrentSetting.Save();
             //System.Windows.Threading.Dispatcher.Run();            
