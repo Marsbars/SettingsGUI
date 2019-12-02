@@ -26,12 +26,13 @@ public class TestSetting : Settings
     [ValueRange(30, 90)]
     [Order(1)]
     [Description("")]
+    [Percentage(true)]
     public int Percent1 { get; set; }
     [Setting]
     [Category("Category1")]
     [DisplayName("Int Value 1")]
     [Description("")]
-    public long Long1 { get; set; }
+    public int Long1 { get; set; }
     [Setting]
     [Category("Category1")]
     [DisplayName("Text Value 1")]
@@ -104,7 +105,7 @@ public class TestSetting : Settings
     [DisplayName("Dropdown 1")]
     [Description("A tuple dropdown")]
     [DropdownList(new string[] { "Battle Shout", "Commanding Shout" })]
-    public short Dropdown1 { get; set; }
+    public string Dropdown1 { get; set; }
 
     public TestSetting()
     {

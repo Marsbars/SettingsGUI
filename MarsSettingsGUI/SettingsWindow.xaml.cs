@@ -99,6 +99,8 @@ namespace MarsSettingsGUI
                 {
                     var type = property.PropertyType;
                     var propertyName = property.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
+                    var isPercent = property.GetCustomAttribute<PercentageAttribute>() != null ? property.GetCustomAttribute<PercentageAttribute>().IsPercentage : false;
+                    var isDropdown = property.GetCustomAttribute<DropdownListAttribute>() != null;
                     Border border = new Border
                     {
                         BorderBrush = Brushes.SlateGray,
@@ -151,7 +153,7 @@ namespace MarsSettingsGUI
                         border.Child = dock;
                         //stackPanel.Children.Add(tglSwitch);
                     }
-                    if (type == typeof(int))
+                    if (type == typeof(int) && isPercent)
                     {
                         StackPanel dock = new StackPanel
                         {
@@ -216,7 +218,7 @@ namespace MarsSettingsGUI
                         border.Child = dock;
                         //stackPanel.Children.Add(dock);
                     }
-                    if (type == typeof(string))
+                    if (type == typeof(string) && !isDropdown)
                     {
                         DockPanel dock = new DockPanel
                         {
@@ -448,7 +450,7 @@ namespace MarsSettingsGUI
 
                         //this.Closing += (sender,e) => { property.SetValue(};
                     }
-                    if (type == typeof(long))
+                    if (type == typeof(int) && !isPercent)
                     {
                         DockPanel dock = new DockPanel
                         {
@@ -490,7 +492,7 @@ namespace MarsSettingsGUI
                         dock.Children.Add(textBox);
                         border.Child = dock;
                     }
-                    if (type == typeof(short))
+                    if (type == typeof(string) && isDropdown)
                     {
                         DockPanel dock = new DockPanel
                         {
@@ -531,7 +533,7 @@ namespace MarsSettingsGUI
                             //Path = new PropertyPath("Value"),
                             
                         };
-                        textBox.SetBinding(ComboBox.SelectedIndexProperty, binding);
+                        textBox.SetBinding(ComboBox.SelectedValueProperty, binding);
 
                         dock.Children.Add(labelname);
                         dock.Children.Add(textBox);
@@ -573,6 +575,17 @@ namespace MarsSettingsGUI
         public DropdownListAttribute(string[] list)
         {
             List = list;
+        }
+    }
+
+    [AttributeUsage(AttributeTargets.Property)]
+    public class PercentageAttribute : Attribute
+    {
+        public bool IsPercentage { get; set; }
+
+        public PercentageAttribute(bool isPercentage)
+        {
+            IsPercentage = isPercentage;
         }
     }
 }
